@@ -1,0 +1,47 @@
+class Solution {
+    public int[] nextPermutation(int[] nums) {
+        int idx1 = -1;
+        int idx2 = nums.length -1;
+        for(int i =nums.length-1; i>0; i--){
+            if(nums[i]>nums[i-1]){
+                idx1 = i-1;
+                break;
+            }
+        }
+        if(idx1 <0){
+            return reverse(nums,0,nums.length-1);
+        }
+        while(idx2>=0){
+            if(nums[idx2]>nums[idx1]){
+                break;
+            }
+            idx2--;
+        }
+        swap(nums,idx1,idx2);
+        
+
+        Arrays.sort(nums,idx1+1,nums.length);
+        return nums;
+        
+
+    }
+    public int[] swap(int[] nums, int idx1, int idx2){
+        int temp = nums[idx1];
+        nums[idx1] = nums[idx2];
+        nums[idx2] = temp;
+        return nums;
+    }
+
+    public int[] reverse(int[] arr, int i,int j){
+        while(i<=j){
+            swap(arr,i,j);
+            i++;
+            j--;
+        }
+        return arr;
+    }
+}
+
+
+
+
