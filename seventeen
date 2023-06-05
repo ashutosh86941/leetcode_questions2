@@ -1,0 +1,26 @@
+class Solution {
+    public void helper(String dig, List<String> list,String ans,int idx){
+
+        String[] map = {"","","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
+        if(idx == dig.length()){
+            list.add(ans);
+            return;
+        }
+
+        String str = map[dig.charAt(idx)-'0'];
+        for(int i =0; i<str.length(); i++){
+            helper(dig,list,ans+str.charAt(i),idx+1);
+        }
+
+    }
+   
+    public List<String> letterCombinations(String digits) {
+        List<String> list = new ArrayList<>();
+        if(digits.length() == 0){
+            return list;
+        }
+        
+        helper(digits,list,"",0);
+        return list;
+    }
+}
