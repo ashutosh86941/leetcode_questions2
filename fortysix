@@ -1,0 +1,32 @@
+class Solution {
+    public void helper(List<List<Integer>> lol,int[] nums,int idx){
+        if(idx==nums.length){
+            List<Integer> ds = new ArrayList<>();
+            for(int i=0; i<nums.length; i++){
+                ds.add(nums[i]);
+            }
+            lol.add(new ArrayList<>(ds));
+            return;
+        }
+
+        
+        for(int i=idx; i<nums.length; i++){
+            swapp(idx,i,nums);
+            helper(lol,nums,idx+1);
+            swapp(i,idx,nums);
+
+        }
+        
+    }
+    public void swapp(int i, int j,int[] num){
+        int t;
+        t= num[i];
+        num[i] = num[j];
+        num[j] = t;
+    }
+    public List<List<Integer>> permute(int[] nums) {
+        List<List<Integer>> lol = new ArrayList<>();
+        helper(lol,nums,0);
+        return lol;
+    }
+}
