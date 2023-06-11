@@ -1,0 +1,21 @@
+class Solution {
+    public void solver(int[] candi, int target, int idx, List<List<Integer>> result, List<Integer> list){
+        if(target<0){
+            return;
+        }
+        if(target == 0){
+            result.add(new ArrayList<Integer>(list));
+            return;
+        }
+        for(int i =idx; i<candi.length; i++){
+            list.add(candi[i]);
+            solver(candi,target-candi[i],i,result,list);
+            list.remove(list.size() -1);
+        }
+    }
+    public List<List<Integer>> combinationSum(int[] candidates, int target) {
+        List<List<Integer>> result = new ArrayList();
+        solver(candidates,target,0,result, new ArrayList<Integer>());
+        return result;
+    }
+}
